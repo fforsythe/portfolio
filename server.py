@@ -20,7 +20,7 @@ def data_collecting(data):
 		database.write(f'\n{email}, {subject}, {message}')
 
 def data_collecting_csv(data):
-	with open("database.csv", "a", newline='') as database2:
+	with open("database.csv", "a", newline="") as database2:
 		email = data["email"]
 		subject = data["subject"]
 		message = data["message"]
@@ -30,11 +30,8 @@ def data_collecting_csv(data):
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
-    	try:
-	    	data = request.form.to_dict()
-	    	data_collecting_csv(data)
-	    	return redirect('thanks.html')
-	    except:
-	    	return 'did not save to database'
+    	data = request.form.to_dict()
+    	data_collecting_csv(data)
+    	return redirect('thanks.html')
     else:
-    	return 'something went wrong'
+    	return 'Uuups Sorry'
